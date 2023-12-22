@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class TodoService {
+
     //Todo in-memory list
     private List<Todo> todos = new ArrayList<>();
     
@@ -40,8 +43,8 @@ public class TodoService {
             throw new NoSuchElementException("Todo with id " + id + " not found");
         }
     }
-    //Deletes a todo
 
+    //Deletes a todo
     public void deletesTodo(Long id){
         todos.removeIf(todo -> todo.getId().equals(id));
     }
@@ -50,6 +53,4 @@ public class TodoService {
     private Optional<Todo> findTodoByID(Long id) {
         return todos.stream().filter(todo -> todo.getId().equals(id)).findFirst();
     }
-
-
 }
